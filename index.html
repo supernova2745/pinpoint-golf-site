@@ -243,40 +243,6 @@
       animation-delay: 120ms;
     }
 
-    .qr-card {
-      position: absolute;
-      right: 0;
-      bottom: 42px;
-      z-index: 3;
-      width: 180px;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: 0 20px 55px rgba(17, 17, 17, 0.11);
-      backdrop-filter: blur(18px);
-    }
-
-    .qr-placeholder {
-      width: 100%;
-      aspect-ratio: 1;
-      border-radius: 14px;
-      background:
-        linear-gradient(90deg, #111 12px, transparent 12px) 0 0 / 28px 28px,
-        linear-gradient(#111 12px, transparent 12px) 0 0 / 28px 28px,
-        #fff;
-      border: 10px solid #fff;
-      outline: 1px solid #deded8;
-    }
-
-    .qr-card p {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.35;
-      text-align: center;
-    }
-
     section {
       padding: 86px 0;
     }
@@ -590,11 +556,6 @@
             <div class="phone primary">
               <img src="screenshot1.png" alt="PinPoint Golf map screenshot">
             </div>
-            <div class="qr-card">
-              <!-- Replace qr-code.png with your real QR code image when ready. -->
-              <div class="qr-placeholder" aria-label="QR code placeholder"></div>
-              <p>Scan to download PinPoint Golf.</p>
-            </div>
           </div>
         </div>
       </section>
@@ -663,10 +624,6 @@
                 <strong>App Store</strong>
               </span>
             </a>
-            <div class="download-qr">
-              <!-- Replace this placeholder with: <img src="qr-code.png" alt="QR code to download PinPoint Golf"> -->
-              <div class="qr-placeholder" aria-label="QR code placeholder"></div>
-            </div>
           </div>
         </div>
       </div>
