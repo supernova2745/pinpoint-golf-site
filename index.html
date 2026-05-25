@@ -1,198 +1,688 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PinPoint Golf Event</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --bg: #f4efe5;
-      --paper: #fffdf8;
-      --ink: #18201b;
-      --muted: #55635a;
-      --line: #d9d0be;
-      --accent: #1f5c3f;
-      --accent-soft: #e4f0e9;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="PinPoint Golf helps golfers find tournaments by location, date, drive time, top courses, and notifications." />
+<title>PinPoint Golf | Find Golf Tournaments Faster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+--text: #111111;
+--muted: #626262;
+--soft: #f6f7f5;
+--card: #ffffff;
+--line: #e7e7e2;
+--accent: #0f3d2e;
+--accent-soft: #e7f2ec;
+--shadow: 0 24px 70px rgba(17, 17, 17, 0.10);
+}
 
-    * {
-      box-sizing: border-box;
-    }
+* {
+box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at top, rgba(31, 92, 63, 0.12), transparent 38%),
-        linear-gradient(180deg, #efe7d6 0%, var(--bg) 28%, #f7f3eb 100%);
-      color: var(--ink);
-      line-height: 1.55;
-    }
+html {
+scroll-behavior: smooth;
+}
 
-    main {
-      width: min(720px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 52px 0 72px;
-    }
+body {
+margin: 0;
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+background: #ffffff;
+color: var(--text);
+}
 
-    .panel {
-      background: var(--paper);
-      border: 1px solid rgba(24, 32, 27, 0.08);
-      border-radius: 28px;
-      padding: 32px 28px;
-      box-shadow: 0 22px 60px rgba(24, 32, 27, 0.08);
-    }
+a {
+color: inherit;
+}
 
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 0.82rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
+.nav {
+position: sticky;
+top: 0;
+z-index: 10;
+backdrop-filter: blur(18px);
+background: rgba(255, 255, 255, 0.82);
+border-bottom: 1px solid rgba(231, 231, 226, 0.8);
+}
 
-    h1 {
-      margin: 0 0 14px;
-      font-size: clamp(2rem, 5vw, 3.1rem);
-      line-height: 1.12;
-      letter-spacing: 0;
-    }
+.nav-inner {
+max-width: 1120px;
+margin: 0 auto;
+padding: 16px 22px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 18px;
+}
 
-    p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
+.brand {
+display: flex;
+align-items: center;
+gap: 10px;
+font-weight: 800;
+letter-spacing: -0.03em;
+}
 
-    dl {
-      display: grid;
-      grid-template-columns: minmax(96px, max-content) 1fr;
-      gap: 10px 16px;
-      margin: 26px 0;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
-    }
+.brand-mark {
+width: 34px;
+height: 34px;
+border-radius: 11px;
+background: linear-gradient(135deg, #0f3d2e, #79aa83);
+box-shadow: 0 10px 24px rgba(15, 61, 46, 0.22);
+}
 
-    dt {
-      color: var(--muted);
-    }
+.nav-links {
+display: flex;
+align-items: center;
+gap: 18px;
+color: var(--muted);
+font-size: 14px;
+font-weight: 600;
+}
 
-    dd {
-      margin: 0;
-      font-weight: 700;
-    }
+.nav-links a {
+text-decoration: none;
+}
 
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 26px;
-    }
+.container {
+max-width: 1120px;
+margin: 0 auto;
+padding: 0 22px;
+}
 
-    a {
-      color: var(--accent);
-    }
+.hero {
+min-height: 86vh;
+display: grid;
+grid-template-columns: 1.05fr 0.95fr;
+align-items: center;
+gap: 56px;
+padding: 80px 0 54px;
+}
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 18px;
-      border-radius: 999px;
-      background: var(--accent);
-      color: white;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-weight: 700;
-      text-decoration: none;
-    }
+.eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+padding: 8px 12px;
+border-radius: 999px;
+background: var(--accent-soft);
+color: var(--accent);
+font-size: 13px;
+font-weight: 800;
+margin-bottom: 18px;
+}
 
-    .secondary {
-      background: transparent;
-      color: var(--accent);
+h1 {
+margin: 0;
+font-size: clamp(48px, 7vw, 86px);
+line-height: 0.95;
+letter-spacing: -0.07em;
+}
+
+.hero-copy {
+margin: 22px 0 0;
+max-width: 620px;
+color: var(--muted);
+font-size: clamp(18px, 2.2vw, 24px);
+line-height: 1.5;
+letter-spacing: -0.02em;
+}
+
+.cta-row {
+display: flex;
+align-items: center;
+gap: 14px;
+flex-wrap: wrap;
+margin-top: 32px;
+}
+
+.app-store-btn {
+display: inline-flex;
+align-items: center;
+gap: 12px;
+padding: 13px 19px;
+color: #fff;
+background: #000;
+border-radius: 14px;
+text-decoration: none;
+box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
+transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.app-store-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 22px 44px rgba(0, 0, 0, 0.22);
+}
+
+.apple-icon {
+font-size: 26px;
+line-height: 1;
+}
+
+.store-text {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+line-height: 1.05;
+}
+
+.store-text small {
+font-size: 10px;
+letter-spacing: 0.02em;
+}
+
+.store-text strong {
+font-size: 20px;
+letter-spacing: -0.04em;
+}
+
+.secondary-link {
+color: var(--accent);
+font-weight: 800;
+text-decoration: none;
+}
+
+.hero-visual {
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 560px;
+}
+
+.orb {
+position: absolute;
+width: 430px;
+height: 430px;
+border-radius: 999px;
+background: radial-gradient(circle, rgba(121, 170, 131, 0.35), rgba(246, 247, 245, 0.05) 67%);
+filter: blur(2px);
+}
+
+.phone-stack {
+position: relative;
+width: min(100%, 430px);
+height: 540px;
+}
+
+.phone {
+position: absolute;
+width: 245px;
+aspect-ratio: 9 / 19.5;
+padding: 10px;
+border-radius: 36px;
+background: #111;
+box-shadow: var(--shadow);
+animation: floatIn 900ms ease both;
+}
+
+.phone img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 27px;
+background: #f2f2f2;
+display: block;
+}
+
+.phone.primary {
+right: 34px;
+top: 0;
+z-index: 2;
+}
+
+.phone.secondary {
+left: 10px;
+bottom: 0;
+z-index: 1;
+transform: rotate(-7deg) scale(0.92);
+opacity: 0.95;
+animation-delay: 120ms;
+}
+
+    .qr-card {
+      position: absolute;
+      right: 0;
+      bottom: 42px;
+      z-index: 3;
+      width: 180px;
+      padding: 16px;
       border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 20px 55px rgba(17, 17, 17, 0.11);
+      backdrop-filter: blur(18px);
     }
 
-    @media (max-width: 520px) {
-      main {
-        width: min(100% - 24px, 720px);
-        padding-top: 20px;
-      }
-
-      .panel {
-        border-radius: 18px;
-        padding: 24px 20px;
-      }
-
-      dl {
-        grid-template-columns: 1fr;
-        gap: 4px;
-      }
+    .qr-placeholder {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 14px;
+      background:
+        linear-gradient(90deg, #111 12px, transparent 12px) 0 0 / 28px 28px,
+        linear-gradient(#111 12px, transparent 12px) 0 0 / 28px 28px,
+        #fff;
+      border: 10px solid #fff;
+      outline: 1px solid #deded8;
     }
-  </style>
+
+    .qr-card p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      text-align: center;
+    }
+
+section {
+padding: 86px 0;
+}
+
+.section-header {
+max-width: 680px;
+margin: 0 auto 34px;
+text-align: center;
+}
+
+h2 {
+margin: 0;
+font-size: clamp(34px, 4.5vw, 58px);
+line-height: 1;
+letter-spacing: -0.06em;
+}
+
+.section-header p {
+color: var(--muted);
+font-size: 18px;
+line-height: 1.55;
+margin: 18px 0 0;
+}
+
+.features {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 18px;
+margin-top: 34px;
+}
+
+.feature {
+min-height: 250px;
+border: 1px solid var(--line);
+border-radius: 30px;
+padding: 28px;
+background: var(--card);
+box-shadow: 0 12px 40px rgba(17, 17, 17, 0.04);
+text-align: left;
+transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.feature:hover {
+transform: translateY(-4px);
+box-shadow: 0 18px 55px rgba(17, 17, 17, 0.08);
+}
+
+.feature-icon {
+width: 46px;
+height: 46px;
+display: grid;
+place-items: center;
+border-radius: 16px;
+background: var(--accent-soft);
+color: var(--accent);
+font-size: 22px;
+margin-bottom: 24px;
+}
+
+.feature h3 {
+margin: 0 0 12px;
+font-size: 22px;
+letter-spacing: -0.04em;
+}
+
+.feature p {
+margin: 0;
+color: var(--muted);
+font-size: 16px;
+line-height: 1.55;
+}
+
+.showcase {
+background: var(--soft);
+border-top: 1px solid var(--line);
+border-bottom: 1px solid var(--line);
+}
+
+.screenshot-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 22px;
+align-items: start;
+margin-top: 44px;
+}
+
+.screenshot-card {
+border-radius: 34px;
+padding: 12px;
+background: #111;
+box-shadow: 0 24px 70px rgba(17, 17, 17, 0.14);
+}
+
+.screenshot-card:nth-child(2) {
+margin-top: 36px;
+}
+
+.screenshot-card img {
+width: 100%;
+border-radius: 24px;
+display: block;
+background: #eeeeee;
+}
+
+.download-panel {
+display: grid;
+grid-template-columns: 1fr auto;
+align-items: center;
+gap: 28px;
+padding: 34px;
+border-radius: 34px;
+background: #111;
+color: #fff;
+box-shadow: var(--shadow);
+}
+
+.download-panel h2 {
+color: #fff;
+}
+
+.download-panel p {
+color: rgba(255, 255, 255, 0.72);
+font-size: 18px;
+line-height: 1.55;
+margin: 14px 0 0;
+}
+
+.download-actions {
+display: flex;
+align-items: center;
+gap: 18px;
+flex-wrap: wrap;
+justify-content: flex-end;
+}
+
+.download-qr {
+width: 130px;
+padding: 10px;
+border-radius: 18px;
+background: #fff;
+}
+
+footer {
+padding: 46px 0;
+color: var(--muted);
+font-size: 14px;
+}
+
+.footer-inner {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 20px;
+border-top: 1px solid var(--line);
+padding-top: 24px;
+}
+
+.footer-links {
+display: flex;
+gap: 18px;
+flex-wrap: wrap;
+}
+
+.footer-links a {
+text-decoration: none;
+font-weight: 700;
+}
+
+.reveal {
+opacity: 0;
+transform: translateY(18px);
+animation: reveal 800ms ease forwards;
+}
+
+.delay-1 { animation-delay: 100ms; }
+.delay-2 { animation-delay: 200ms; }
+.delay-3 { animation-delay: 300ms; }
+
+@keyframes reveal {
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+@keyframes floatIn {
+from {
+opacity: 0;
+transform: translateY(24px) scale(0.96);
+}
+to {
+opacity: 1;
+}
+}
+
+@media (max-width: 880px) {
+.nav-links a:not(.mobile-keep) {
+display: none;
+}
+
+.hero {
+min-height: auto;
+grid-template-columns: 1fr;
+gap: 34px;
+padding: 62px 0 34px;
+text-align: center;
+}
+
+.hero-copy {
+margin-left: auto;
+margin-right: auto;
+}
+
+.cta-row {
+justify-content: center;
+}
+
+.hero-visual {
+min-height: 490px;
+}
+
+.features,
+.screenshot-grid,
+.download-panel {
+grid-template-columns: 1fr;
+}
+
+.screenshot-card:nth-child(2) {
+margin-top: 0;
+}
+
+.download-actions {
+justify-content: flex-start;
+}
+
+.footer-inner {
+align-items: flex-start;
+flex-direction: column;
+}
+}
+
+@media (max-width: 520px) {
+.phone-stack {
+height: 455px;
+}
+
+.phone {
+width: 205px;
+}
+
+.phone.primary {
+right: 8px;
+}
+
+.phone.secondary {
+left: 0;
+}
+
+.qr-card {
+width: 145px;
+right: 8px;
+bottom: 14px;
+}
+
+section {
+padding: 64px 0;
+}
+}
+</style>
 </head>
 <body>
-  <main>
-    <section class="panel">
-      <div class="eyebrow">PinPoint Golf</div>
-      <h1 id="title">Tournament Event</h1>
-      <p>This shared event opens directly in PinPoint Golf when the app is installed.</p>
+<nav class="nav">
+<div class="nav-inner">
+<div class="brand">
+<img src="logo.png" style="height: 34px;">
+<span>PinPoint Golf</span>
+</div>
+<div class="nav-links">
+<a href="#features">Features</a>
+<a href="#screenshots">Screenshots</a>
+<a class="mobile-keep" href="https://apps.apple.com/us/app/pinpoint-golf/id6755130156">Download</a>
+</div>
+</div>
+</nav>
 
-      <dl id="details"></dl>
+<main>
+<div class="container">
+<section class="hero">
+<div class="reveal">
+<div class="eyebrow">Tournament discovery, simplified</div>
+<h1>Find golf tournaments faster.</h1>
+<p class="hero-copy">PinPoint Golf helps you discover golf tournaments by location, date, drive time, top courses, and custom alerts.</p>
+<div class="cta-row">
+<a class="app-store-btn" href="https://apps.apple.com/us/app/pinpoint-golf/id6755130156" aria-label="Download PinPoint Golf on the App Store">
+<span class="apple-icon"></span>
+<span class="store-text">
+<small>Download on the</small>
+<strong>App Store</strong>
+</span>
+</a>
+<a class="secondary-link" href="#screenshots">View screenshots</a>
+</div>
+</div>
 
-      <div class="actions">
-        <a class="button" id="open-app" href="pinpointgolf://event">Open in PinPoint Golf</a>
-        <a class="button secondary" href="/">Privacy Policy</a>
-      </div>
-    </section>
-  </main>
+<div class="hero-visual reveal delay-1" aria-label="PinPoint Golf app preview">
+<div class="orb"></div>
+<div class="phone-stack">
+<div class="phone secondary">
+<img src="screenshot2.png" alt="PinPoint Golf event filtering screenshot">
+</div>
+<div class="phone primary">
+<img src="screenshot1.png" alt="PinPoint Golf map screenshot">
+</div>
+            <div class="qr-card">
+              <!-- Replace qr-code.png with your real QR code image when ready. -->
+              <div class="qr-placeholder" aria-label="QR code placeholder"></div>
+              <p>Scan to download PinPoint Golf.</p>
+            </div>
+</div>
+</div>
+</section>
+</div>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const value = (...keys) => {
-      for (const key of keys) {
-        const raw = params.get(key);
-        if (raw && raw.trim()) return raw.trim();
-      }
-      return "";
-    };
+<section id="features">
+<div class="container">
+<div class="section-header reveal">
+<h2>Built for golfers who want the right event, not endless searching.</h2>
+<p>PinPoint Golf focuses on discovery: where tournaments are, when they happen, and how quickly you can get there.</p>
+</div>
 
-    const title = value("fullTitle", "eventTitle", "title", "course") || "Tournament Event";
-    const course = value("course", "courseName");
-    const city = value("city");
-    const state = value("state", "st");
-    const date = value("dateText", "date");
-    const location = [course, [city, state].filter(Boolean).join(", ")].filter(Boolean).join(" - ");
+<div class="features">
+<div class="feature reveal delay-1">
+<div class="feature-icon">⌖</div>
+<h3>Find & Join</h3>
+<p>Discover tournaments near you by radius or estimated drive time, then jump directly to the event details when you are ready.</p>
+</div>
+<div class="feature reveal delay-2">
+<div class="feature-icon">◷</div>
+<h3>Filter</h3>
+<p>Filter events by date range, state, nearby location, and top-course options so the list matches what you actually want to play.</p>
+</div>
+<div class="feature reveal delay-3">
+<div class="feature-icon">◌</div>
+<h3>Get Notified</h3>
+<p>Receive alerts when new tournaments appear nationwide, in selected states, or within a custom radius around your location.</p>
+</div>
+</div>
+</div>
+</section>
 
-    document.getElementById("title").textContent = title;
+<section id="screenshots" class="showcase">
+<div class="container">
+<div class="section-header reveal">
+<h2>A cleaner way to plan your next tournament.</h2>
+<p>Replace these placeholders with your real app screenshots. Use vertical iPhone screenshots for the best result.</p>
+</div>
 
-    const details = [
-      ["Date", date],
-      ["Location", location]
-    ].filter(([, detail]) => detail);
+<div class="screenshot-grid">
+<div class="screenshot-card reveal delay-1">
+<img src="screenshot1.png" alt="PinPoint Golf map view">
+</div>
+<div class="screenshot-card reveal delay-2">
+<img src="screenshot2.png" alt="PinPoint Golf event filters">
+</div>
+<div class="screenshot-card reveal delay-3">
+<img src="screenshot3.png" alt="PinPoint Golf notification settings">
+</div>
+</div>
+</div>
+</section>
 
-    const list = document.getElementById("details");
-    if (details.length) {
-      for (const [label, detail] of details) {
-        const term = document.createElement("dt");
-        term.textContent = label;
-        const desc = document.createElement("dd");
-        desc.textContent = detail;
-        list.append(term, desc);
-      }
-    } else {
-      list.remove();
-    }
+<section>
+<div class="container">
+<div class="download-panel reveal">
+<div>
+<h2>Download PinPoint Golf today.</h2>
+<p>Start finding tournaments by location, timing, distance, and alerts.</p>
+</div>
+<div class="download-actions">
+<a class="app-store-btn" href="https://apps.apple.com/us/app/pinpoint-golf/id6755130156" aria-label="Download PinPoint Golf on the App Store">
+<span class="apple-icon"></span>
+<span class="store-text">
+<small>Download on the</small>
+<strong>App Store</strong>
+</span>
+</a>
+            <div class="download-qr">
+              <!-- Replace this placeholder with: <img src="qr-code.png" alt="QR code to download PinPoint Golf"> -->
+              <div class="qr-placeholder" aria-label="QR code placeholder"></div>
+            </div>
+</div>
+</div>
+</div>
+</section>
+</main>
 
-    const openApp = document.getElementById("open-app");
-    const query = params.toString();
-    openApp.href = query ? `pinpointgolf://event?${query}` : "pinpointgolf://event";
-  </script>
+<footer>
+<div class="container">
+<div class="footer-inner">
+<div>© 2026 Borjas Gen Solutions. All rights reserved.</div>
+<div class="footer-links">
+<a href="mailto:cjborjas@bsgns.com">Support</a>
+<a href="https://borjasgensolutions.github.io/pinpoint-golf-privacy-policy/">Privacy Policy</a>
+</div>
+</div>
+</div>
+</footer>
 </body>
 </html>
