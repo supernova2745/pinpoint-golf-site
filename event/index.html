@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-itunes-app" content="app-id=6755130156">
   <title>PinPoint Golf Event</title>
   <style>
     :root {
@@ -68,6 +69,12 @@
       margin: 0;
       color: var(--muted);
       font-size: 1.05rem;
+    }
+
+    .hint {
+      margin-top: 12px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.94rem;
     }
 
     dl {
@@ -148,12 +155,15 @@
 
       <div class="actions">
         <a class="button" id="open-app" href="pinpointgolf://event">Open in PinPoint Golf</a>
+        <a class="button secondary" id="get-app" href="https://apps.apple.com/us/app/pinpoint-golf/id6755130156">Get PinPoint Golf</a>
         <a class="button secondary" href="/">Privacy Policy</a>
       </div>
+      <p class="hint" id="fallback-hint">If the app is not installed, use the App Store link.</p>
     </section>
   </main>
 
   <script>
+    const appStoreUrl = "https://apps.apple.com/us/app/pinpoint-golf/id6755130156";
     const params = new URLSearchParams(window.location.search);
     const value = (...keys) => {
       for (const key of keys) {
@@ -191,8 +201,22 @@
     }
 
     const openApp = document.getElementById("open-app");
-    const query = params.toString();
-    openApp.href = query ? `pinpointgolf://event?${query}` : "pinpointgolf://event";
+    const getApp = document.getElementById("get-app");
+    const fallbackHint = document.getElementById("fallback-hint");
+    const query = window.location.search;
+    openApp.href = query ? `pinpointgolf://event${query}` : "pinpointgolf://event";
+    getApp.href = appStoreUrl;
+
+    openApp.addEventListener("click", () => {
+      const openedAt = Date.now();
+      fallbackHint.textContent = "Opening PinPoint Golf. If it does not open, sending you to the App Store.";
+
+      window.setTimeout(() => {
+        if (document.visibilityState === "visible" && Date.now() - openedAt > 900) {
+          window.location.href = appStoreUrl;
+        }
+      }, 1200);
+    });
   </script>
 </body>
 </html>
