@@ -233,12 +233,26 @@
     const openApp = document.getElementById("open-app");
     const getApp = document.getElementById("get-app");
     const fallbackHint = document.getElementById("fallback-hint");
-    const query = window.location.search;
-    openApp.href = query ? `pinpointgolf://event${query}` : "pinpointgolf://event";
+    const appLinkURL = () => {
+      const pathParts = window.location.pathname.split("/").filter(Boolean);
+      const pathEventId = pathParts[0] && pathParts[0].toLowerCase() === "event" && pathParts[1]
+        ? decodeURIComponent(pathParts.slice(1).join("/"))
+        : "";
+      const hasQueryID = params.has("eventId") || params.has("event_id") || params.has("id");
+      let query = window.location.search || "";
+
+      if (pathEventId && !hasQueryID) {
+        query += `${query ? "&" : "?"}eventId=${encodeURIComponent(pathEventId)}`;
+      }
+
+      return query ? `pinpointgolf://event${query}` : "pinpointgolf://event";
+    };
+    openApp.href = appLinkURL();
     getApp.href = appStoreUrl;
 
     openApp.addEventListener("click", () => {
       const openedAt = Date.now();
+      openApp.href = appLinkURL();
       fallbackHint.textContent = "Opening PinPoint Golf. If it does not open, sending you to the App Store.";
 
       window.setTimeout(() => {
