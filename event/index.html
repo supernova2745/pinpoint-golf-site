@@ -173,7 +173,27 @@
       return "";
     };
 
-    const title = value("fullTitle", "eventTitle", "title", "course") || "Tournament Event";
+    const decodeSharedEvents = () => {
+      const raw = value("events");
+      if (!raw) return [];
+      try {
+        let base64 = raw.replace(/-/g, "+").replace(/_/g, "/");
+        while (base64.length % 4) base64 += "=";
+        const binary = atob(base64);
+        const json = decodeURIComponent(Array.from(binary, ch =>
+          "%" + ch.charCodeAt(0).toString(16).padStart(2, "0")
+        ).join(""));
+        const events = JSON.parse(json);
+        return Array.isArray(events) ? events : [];
+      } catch (_) {
+        return [];
+      }
+    };
+
+    const sharedEvents = decodeSharedEvents();
+    const title = sharedEvents.length > 1
+      ? `${sharedEvents.length} Tournament Events`
+      : value("fullTitle", "eventTitle", "title", "course") || "Tournament Event";
     const course = value("course", "courseName");
     const city = value("city");
     const state = value("state", "st");
@@ -182,10 +202,20 @@
 
     document.getElementById("title").textContent = title;
 
-    const details = [
-      ["Date", date],
-      ["Location", location]
-    ].filter(([, detail]) => detail);
+    const details = sharedEvents.length > 1
+      ? sharedEvents.slice(0, 8).map((event, index) => {
+          const eventTitle = event.fullTitle || event.eventTitle || event.course || `Event ${index + 1}`;
+          const eventDate = event.dateText || event.date || "";
+          const eventPlace = [
+            event.course,
+            [event.city, event.state || event.st].filter(Boolean).join(", ")
+          ].filter(Boolean).join(" - ");
+          return [`Event ${index + 1}`, [eventTitle, eventDate, eventPlace].filter(Boolean).join(" | ")];
+        }).concat(sharedEvents.length > 8 ? [["More", `${sharedEvents.length - 8} additional events`]] : [])
+      : [
+          ["Date", date],
+          ["Location", location]
+        ].filter(([, detail]) => detail);
 
     const list = document.getElementById("details");
     if (details.length) {
