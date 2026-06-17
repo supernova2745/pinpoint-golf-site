@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.bgs.pinpointgolf",
+      "sha256_cert_fingerprints": [
+        "77:50:C2:E4:E9:37:3C:F8:7D:FB:30:D7:56:0D:C1:31:72:0B:72:98:F9:42:AF:AE:7E:56:E1:5E:99:1B:41:33"
+      ]
+    }
+  }
+]
