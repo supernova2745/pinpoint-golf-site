@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Download PinPoint Golf for Apple devices or join the Android beta.">
+  <meta name="theme-color" content="#0f3d2e">
+  <title>Get PinPoint Golf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text: #111111;
+      --muted: #626262;
+      --soft: #f6f7f5;
+      --card: #ffffff;
+      --line: #e7e7e2;
+      --accent: #0f3d2e;
+      --accent-soft: #e7f2ec;
+      --shadow: 0 24px 70px rgba(17, 17, 17, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% -10%, rgba(121, 170, 131, 0.24), transparent 42%),
+        var(--soft);
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(100% - 32px, 940px);
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+    }
+
+    .home-link {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .hero {
+      max-width: 720px;
+      margin: 0 auto 34px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+    }
+
+    .lead {
+      max-width: 650px;
+      margin: 20px auto 0;
+      color: var(--muted);
+      font-size: clamp(17px, 2.5vw, 21px);
+      line-height: 1.55;
+    }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 38px;
+    }
+
+    .platform-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+      padding: 30px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 14px 46px rgba(17, 17, 17, 0.06);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .platform-card.recommended {
+      border-color: rgba(15, 61, 46, 0.35);
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+
+    .recommended-label {
+      display: none;
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .platform-card.recommended .recommended-label { display: inline-flex; }
+
+    .platform-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+      border-radius: 18px;
+      color: #ffffff;
+      background: #111111;
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .android .platform-icon { background: var(--accent); }
+
+    h2 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: -0.045em;
+    }
+
+    .platform-copy {
+      margin: 12px 0 24px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .steps {
+      display: grid;
+      gap: 11px;
+      padding: 0;
+      margin: 0 0 26px;
+      list-style: none;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 9px;
+      align-items: start;
+    }
+
+    .step-number {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .action-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 54px;
+      padding: 14px 20px;
+      margin-top: auto;
+      border-radius: 15px;
+      color: #ffffff;
+      background: #111111;
+      font-size: 16px;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .android .action-button { background: var(--accent); }
+
+    .action-button:hover,
+    .action-button:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px rgba(17, 17, 17, 0.16);
+    }
+
+    .note {
+      max-width: 720px;
+      margin: 24px auto 0;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    .note strong { color: var(--text); }
+    .note a { color: var(--accent); font-weight: 800; }
+
+    footer {
+      margin-top: 40px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (hover: hover) {
+      .platform-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .page { width: min(100% - 24px, 940px); }
+      .topbar { margin-bottom: 40px; }
+      .platform-grid { grid-template-columns: 1fr; }
+      .platform-card { min-height: auto; padding: 26px; }
+      .platform-card.recommended { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <a class="brand" href="../" aria-label="PinPoint Golf home">
+        <img src="../logo.png" alt="">
+        <span>PinPoint Golf</span>
+      </a>
+      <a class="home-link" href="../">Visit website</a>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">One app. Two platforms.</div>
+      <h1>Get PinPoint Golf.</h1>
+      <p class="lead">Download the Apple version today or join the Android beta to help test PinPoint Golf before its public Google Play release.</p>
+    </section>
+
+    <section class="platform-grid" aria-label="Choose your platform">
+      <article class="platform-card apple" id="apple-card">
+        <span class="recommended-label">Your device</span>
+        <div class="platform-icon" aria-hidden="true"></div>
+        <h2>Apple</h2>
+        <p class="platform-copy">Available now for iPhone, iPad, and Mac through the Apple App Store.</p>
+        <a class="action-button" href="https://apps.apple.com/us/app/pinpoint-golf/id6755130156" aria-label="Download PinPoint Golf on the Apple App Store">Download on the App Store</a>
+      </article>
+
+      <article class="platform-card android" id="android-card">
+        <span class="recommended-label">Your device</span>
+        <div class="platform-icon" aria-hidden="true">A</div>
+        <h2>Android beta</h2>
+        <p class="platform-copy">Help test the Android version through PinPoint Golf's official Google Play closed test.</p>
+        <ol class="steps">
+          <li><span class="step-number">1</span><span>Open the beta page using the Google account you use with Google Play.</span></li>
+          <li><span class="step-number">2</span><span>Tap <strong>Become a tester</strong> on Google Play.</span></li>
+          <li><span class="step-number">3</span><span>Use the install link that appears after you opt in.</span></li>
+        </ol>
+        <a class="action-button" href="https://play.google.com/apps/testing/com.bgs.pinpointgolf" aria-label="Join the PinPoint Golf Android beta on Google Play">Join the Android beta</a>
+      </article>
+    </section>
+
+    <aside class="note">
+      <strong>Android access note:</strong> Closed testing requires an approved tester account. If Google Play says you are not eligible, email <a href="mailto:cjborjas@bsgns.com?subject=PinPoint%20Golf%20Android%20Beta%20Access">cjborjas@bsgns.com</a> with the Google account you want to use.
+    </aside>
+
+    <footer>© 2026 Borjas Gen Solutions. All rights reserved.</footer>
+  </main>
+
+  <script>
+    (function () {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera || '';
+      var isAndroid = /android/i.test(userAgent);
+      var isApple = /iPad|iPhone|iPod|Macintosh/i.test(userAgent);
+      var card = isAndroid
+        ? document.getElementById('android-card')
+        : isApple
+          ? document.getElementById('apple-card')
+          : null;
+
+      if (card) {
+        card.classList.add('recommended');
+      }
+    }());
+  </script>
+</body>
+</html>
