@@ -115,7 +115,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      min-height: 380px;
+      min-height: 430px;
       padding: 30px;
       overflow: hidden;
       border: 1px solid var(--line);
@@ -170,7 +170,7 @@
     }
 
     .platform-copy {
-      margin: 12px 0 24px;
+      margin: 12px 0 22px;
       color: var(--muted);
       font-size: 16px;
       line-height: 1.55;
@@ -180,7 +180,7 @@
       display: grid;
       gap: 11px;
       padding: 0;
-      margin: 0 0 26px;
+      margin: 0 0 24px;
       list-style: none;
       color: var(--muted);
       font-size: 14px;
@@ -206,6 +206,12 @@
       font-weight: 800;
     }
 
+    .button-stack {
+      display: grid;
+      gap: 10px;
+      margin-top: auto;
+    }
+
     .action-button {
       display: inline-flex;
       justify-content: center;
@@ -213,7 +219,7 @@
       width: 100%;
       min-height: 54px;
       padding: 14px 20px;
-      margin-top: auto;
+      border: 1px solid transparent;
       border-radius: 15px;
       color: #ffffff;
       background: #111111;
@@ -224,7 +230,13 @@
       transition: transform 180ms ease, box-shadow 180ms ease;
     }
 
-    .android .action-button { background: var(--accent); }
+    .android .action-button.primary { background: var(--accent); }
+
+    .android .action-button.secondary {
+      color: var(--accent);
+      background: #ffffff;
+      border-color: rgba(15, 61, 46, 0.25);
+    }
 
     .action-button:hover,
     .action-button:focus-visible {
@@ -232,8 +244,19 @@
       box-shadow: 0 16px 28px rgba(17, 17, 17, 0.16);
     }
 
+    .same-account {
+      margin: 0 0 18px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
     .note {
-      max-width: 720px;
+      max-width: 760px;
       margin: 24px auto 0;
       padding: 18px 20px;
       border: 1px solid var(--line);
@@ -293,25 +316,31 @@
         <div class="platform-icon" aria-hidden="true"></div>
         <h2>Apple</h2>
         <p class="platform-copy">Available now for iPhone, iPad, and Mac through the Apple App Store.</p>
-        <a class="action-button" href="https://apps.apple.com/us/app/pinpoint-golf/id6755130156" aria-label="Download PinPoint Golf on the Apple App Store">Download on the App Store</a>
+        <div class="button-stack">
+          <a class="action-button" href="https://apps.apple.com/us/app/pinpoint-golf/id6755130156" aria-label="Download PinPoint Golf on the Apple App Store">Download on the App Store</a>
+        </div>
       </article>
 
       <article class="platform-card android" id="android-card">
         <span class="recommended-label">Your device</span>
         <div class="platform-icon" aria-hidden="true">A</div>
         <h2>Android beta</h2>
-        <p class="platform-copy">Help test the Android version through PinPoint Golf's official Google Play closed test.</p>
+        <p class="platform-copy">Anyone with a Google account can enroll through the tester group, then install the beta securely from Google Play.</p>
+        <p class="same-account">Use the same Google account for the tester group and the Google Play Store.</p>
         <ol class="steps">
-          <li><span class="step-number">1</span><span>Open the beta page using the Google account you use with Google Play.</span></li>
-          <li><span class="step-number">2</span><span>Tap <strong>Become a tester</strong> on Google Play.</span></li>
-          <li><span class="step-number">3</span><span>Use the install link that appears after you opt in.</span></li>
+          <li><span class="step-number">1</span><span>Join the PinPoint Golf Android tester group.</span></li>
+          <li><span class="step-number">2</span><span>Return here and continue to the Google Play beta page.</span></li>
+          <li><span class="step-number">3</span><span>Tap <strong>Become a tester</strong>, then install the app.</span></li>
         </ol>
-        <a class="action-button" href="https://play.google.com/apps/testing/com.bgs.pinpointgolf" aria-label="Join the PinPoint Golf Android beta on Google Play">Join the Android beta</a>
+        <div class="button-stack">
+          <a class="action-button primary" href="https://groups.google.com/g/pinpoint-golf-android-beta" target="_blank" rel="noopener" aria-label="Join the PinPoint Golf Android tester group">1. Join the tester group</a>
+          <a class="action-button secondary" href="https://play.google.com/apps/testing/com.bgs.pinpointgolf" target="_blank" rel="noopener" aria-label="Continue to the PinPoint Golf Android beta on Google Play">2. Continue to Google Play</a>
+        </div>
       </article>
     </section>
 
     <aside class="note">
-      <strong>Android access note:</strong> Closed testing requires an approved tester account. If Google Play says you are not eligible, email <a href="mailto:cjborjas@bsgns.com?subject=PinPoint%20Golf%20Android%20Beta%20Access">cjborjas@bsgns.com</a> with the Google account you want to use.
+      <strong>Android troubleshooting:</strong> After joining the group, Google Play may take a few minutes to recognize access. Confirm that the Play Store is signed into the same Google account. For help, email <a href="mailto:cjborjas@bsgns.com?subject=PinPoint%20Golf%20Android%20Beta%20Access">cjborjas@bsgns.com</a>.
     </aside>
 
     <footer>© 2026 Borjas Gen Solutions. All rights reserved.</footer>
